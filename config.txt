@@ -1,0 +1,141 @@
+pri-zone-asw0#show vlan    
+VLAN  Name                 Status    Ports
+----- -------------------- --------- ----------------------------------------
+1     System-VLAN          active    Gi1/0/1, Gi1/0/2, Gi1/0/5, Gi1/0/6,
+                                     Gi1/0/7, Gi1/0/8, Gi1/0/9, Gi1/0/10,
+                                     Gi1/0/11, Gi1/0/12, Gi1/0/13, Gi1/0/14,
+                                     Gi1/0/15, Gi1/0/16, Gi1/0/17, Gi1/0/18
+2     Management           active    Gi1/0/1, Gi1/0/2, Gi1/0/3, Gi1/0/4
+3     Servers              active    Gi1/0/1, Gi1/0/9, Gi1/0/10, Gi1/0/11,
+                                     Gi1/0/12, Gi1/0/13, Gi1/0/14
+101   Home-Users           active    Gi1/0/1, Gi1/0/3, Gi1/0/4
+102   Home-Smart           active    Gi1/0/1, Gi1/0/3, Gi1/0/4, Gi1/0/5,
+                                     Gi1/0/6
+
+pri-zone-asw0#show interface switchport 
+ Port      LAG       Type          PVID      Acceptable frame type  Ingress Checking
+ -------   ---       ----          ----      ---------------------  ----------------
+ Gi1/0/1   N/A       General       1         Tagged                 Enable
+ Gi1/0/2   N/A       General       1         All                    Enable
+ Gi1/0/3   N/A       General       1         Tagged                 Enable
+ Gi1/0/4   N/A       General       1         Tagged                 Enable
+ Gi1/0/5   N/A       General       102       All                    Enable
+ Gi1/0/6   N/A       General       102       All                    Enable
+ Gi1/0/7   N/A       General       1         All                    Enable
+ Gi1/0/8   N/A       General       1         All                    Enable
+ Gi1/0/9   N/A       General       3         All                    Enable
+ Gi1/0/10  N/A       General       3         All                    Enable
+ Gi1/0/11  N/A       General       3         All                    Enable
+ Gi1/0/12  N/A       General       3         All                    Enable
+ Gi1/0/13  N/A       General       3         All                    Enable
+ Gi1/0/14  N/A       General       3         All                    Enable
+ Gi1/0/15  N/A       General       1         All                    Enable
+ Gi1/0/16  N/A       General       1         All                    Enable
+ Gi1/0/17  N/A       General       1         All                    Enable
+ Gi1/0/18  N/A       General       1         All                    Enable
+
+pri-zone-asw0#show ip dhcp server status
+DHCP server is enable.
+Ping packet number: 1.
+Ping packet timeout: 100 milliseconds.
+
+pri-zone-asw0#show ip dhcp server pool 
+Pool Name:              VLAN2
+Network Address:        172.16.1.0
+Subenet Mask:           255.255.255.0
+Lease Time:             10
+Default Gateway:        172.16.1.1
+DNS Server:             172.16.1.1
+Netbios Server:         
+Netbios Node Type:      
+Next Server Address:    
+Domain Name:            
+Bootfile Name:          
+
+Pool Name:              VLAN3
+Network Address:        172.16.0.0
+Subenet Mask:           255.255.255.0
+Lease Time:             10
+Default Gateway:        172.16.0.1
+DNS Server:             172.16.0.1
+Netbios Server:         
+Netbios Node Type:      
+Next Server Address:    
+Domain Name:            
+Bootfile Name:          
+
+Pool Name:              VLAN101       
+Network Address:        172.16.2.0    
+Subenet Mask:           255.255.255.0 
+Lease Time:             10            
+Default Gateway:        172.16.2.1    
+DNS Server:             172.16.2.1    
+Netbios Server:                       
+Netbios Node Type:                    
+Next Server Address:                  
+Domain Name:                          
+Bootfile Name:                        
+                                      
+Pool Name:              VLAN102       
+Network Address:        172.16.3.0    
+Subenet Mask:           255.255.255.0 
+Lease Time:             10            
+Default Gateway:        172.16.3.1    
+DNS Server:             172.16.3.1    
+Netbios Server:                       
+Netbios Node Type:                    
+Next Server Address:                  
+Domain Name:                          
+Bootfile Name:                        
+                                      
+Pool Name:              native        
+Network Address:        192.168.0.0   
+Subenet Mask:           255.255.255.0 
+Lease Time:             10            
+Default Gateway:        192.168.0.1   
+DNS Server:                           
+Netbios Server:                       
+Netbios Node Type:                    
+Next Server Address:                  
+Domain Name:                          
+Bootfile Name:
+
+pri-zone-asw0#show interface vlan 2
+VLAN2 is up, line protocol is up
+  Hardware is CPU Interface
+  ip is 172.16.1.2/24 
+
+pri-zone-asw0#show interface vlan 3                                            
+VLAN3 is up, line protocol is up
+  Hardware is CPU Interface
+  ip is 172.16.0.2/24 
+
+pri-zone-asw0#show interface vlan 101                                          
+VLAN101 is up, line protocol is up
+  Hardware is CPU Interface
+  ip is 172.16.2.2/24 
+
+pri-zone-asw0#show interface vlan 102                                          
+VLAN102 is up, line protocol is up
+  Hardware is CPU Interface
+  ip is 172.16.3.2/24 
+
+pri-zone-asw0#show ip dhcp relay
+DHCP relay state: enabled
+DHCP relay hops: 4
+DHCP relay Time Threshold: 0 seconds
+DHCP relay helper address is configured on the following interfaces:
+Interface                     Helper address
+---------------------         -------------------------
+VLAN 2                        172.16.1.1
+VLAN 3                        172.16.0.1
+VLAN 101                      172.16.2.1
+VLAN 102                      172.16.3.1
+
+DHCP relay defaulte relay agent interface:
+Default relay agent interface is not exist.
+IP address: 
+
+DHCP vlan relay helper address is configured on the following vlan:
+vlan                          Helper address
+---------------------         -------------------------
